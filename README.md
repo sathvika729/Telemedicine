@@ -63,25 +63,4 @@ project/ │ ├── static/ │   └── style.css                # Option
   },
   ...
 }
-Running the App
 
-1. Make sure Python and Flask are installed.
-2. Run the app:
-python app.py
-3. Visit http://localhost:5000 in your browser.
- To-Do / Improvements
-
-Add user registration and password encryption
-
-Store appointments and prescriptions in a database (e.g., SQLite)
-
-Add admin panel for managing doctors and patients
-
-Enable email confirmations for appointments
-Contact
-
-For any assistance, contact:
-
-📞 Phone: 7459146073
-
-📧 Email: butterflyhospitals@gmail.com
