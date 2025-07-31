@@ -49,18 +49,3 @@ project/ │ ├── static/ │   └── style.css                # Option
 | lavanya    | l123     |
 | vasudha    | v123     |
 
- Sample Doctor Data (/json endpoint)
-```json
-{
-  "Chittoor": {
-    "General Physician": [{"name": "Dr. Ram", "id": 1}, ...],
-    "Cardiology": [{"name": "Dr. Pratap", "id": 3}, ...],
-    ...
-  },
-  "Tirupati": {
-    "ENT": [{"name": "Dr. Priya", "id": 16}],
-    ...
-  },
-  ...
-}
-
