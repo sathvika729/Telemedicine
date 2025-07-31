@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Butterfly Hospitals Doctor appointment</title>
+
+</head>
+<body>
+    <body style="background-color: lightblue;">
+
+        <h5>Butterfly Hospitals</h5>
+        <img src="Logo.png" width="90" Height="90"alt="Butterfly Hospitals Logo"> 
+        <div style="text-align:end;">
+        <p1>For any assistance please contact us </p1><br>
+        <p1><span style='font-size:20px;'>&#128222;</span><a href="g"> 7459146073</a></p1><br>
+    <p1><span style='font-size:20px;'>&#128231;</span><a href="g"> butterflyhospitals@gmail.com</a></p1>
+    </div>
+    <div style="text-align: center;">
+    <h2><b>Book an appointment with us</b></h2><br>
+    <form method="POST" action="/appointment">
+    <h4>Please enter your name</h4>
+    <input type="text" placeholder="Name"name="na"><br>
+    <h4>Please enter your contact number</h4>
+    <input type="tel" placeholder="Mobile number"name="mn"><br>
+    <h4>Select location</h4>
+    <label for="location">Choose your location:</label>
+  <select name="location" id="location">
+    <option value="Chittoor">Chittoor</option>
+    <option value="Tirupati">Tirupati</option>
+    <option value="Chandragiri">Chandragiri</option>
+    <option value="Vellore">Vellore</option>
+  </select><br>
+  <h4>Select Department</h4>
+  <label for="Department">Choose Department:</label>
+  <select name="Department" id="Department">
+    <option value="General Physician">General Physician</option>
+    <option value="Cardiology">Cardiologist</option>
+    <option value="Orthopedic">Orthopedic</option>
+    <option value="ENT">ENT</option>
+  </select><br>
+  <h4>Select Doctor name</h4>
+  <label for="Doctor_name">Choose your doctor:</label>
+  <select name="Doctor_name" id="Doctor_name">
+    <option value="">Choose doctor</option>
+  </select><br>
+  <h4>Available slots</h4>
+  <label for="Available_slots">Available slots</label>
+  <select name="Available_slots" id="Available_slots">
+    <option value="">Book your slot</option>
+    <option value="9:00 to 9:30 am">9:00 to 9:30 am</option>
+    <option value="9:45 to 10:15 am">9:45 to 10:15 am</option>
+    <option value="10:30 to 11:00 am">10:30 to 11:00 am</option>
+  </select><br>
+  <h4>Please select date</h4>
+  <input type="datetime-local" name="date"><br>
+  <h4>Please enter your symptoms</h4>
+  <textarea name="symptoms" rows="4" cols="30"></textarea><br><br>
+  <input type="submit">&nbsp;&nbsp;&nbsp;<input type="button" value="Cancel"></form></div>
+    
+<script>
+  // Global variable to store fetched doctor data
+  let allDoctorsData = {};
+
+// Get references to the select elements
+const locationSelect = document.getElementById('location');
+const departmentSelect = document.getElementById('Department');
+const doctorSelect = document.getElementById('Doctor_name');
+
+// Function to update doctor options based on selection
+function updateDoctorOptions() {
+    const selectedLocation = locationSelect.value;
+    const selectedDepartment = departmentSelect.value;
+
+    // Clear current doctor options
+    doctorSelect.innerHTML = '<option value="">-- Select Doctor --</option>'; // Clear and add default
+
+    // Check if both location and department are selected and data exists
+    if (selectedLocation && selectedDepartment && allDoctorsData[selectedLocation] && allDoctorsData[selectedLocation][selectedDepartment]) {
+
+        const doctors = allDoctorsData[selectedLocation][selectedDepartment];
+
+        // Populate doctor options
+        doctors.forEach(doctor => {
+            const option = document.createElement('option');
+            option.value = doctor.id; // Use doctor's ID as the value
+            option.textContent = doctor.name; // Display doctor's name
+            doctorSelect.appendChild(option);
+        });
+        
+    } else {
+        // If location or department is not selected yet
+         doctorSelect.innerHTML = '<option value="">-- Select Location & Department First --</option>';
+    }
+}
+
+// Fetch doctor data when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('/json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            allDoctorsData = data; // Store the fetched data globally
+            console.log("Doctor data loaded:", allDoctorsData); // For debugging
+
+            // Add event listeners AFTER data is loaded
+            locationSelect.addEventListener('change', updateDoctorOptions);
+            departmentSelect.addEventListener('change', updateDoctorOptions);
+
+            // Optional: Trigger initial update in case of pre-filled values (less common here)
+            // updateDoctorOptions();
+        })
+        .catch(error => {
+            console.error('Error loading or parsing JSON:', error);
+            doctorSelect.innerHTML = '<option value="">Error loading doctors</option>'; // Inform user
+        });
+});
+</script>
+
+    </body>
+</html>

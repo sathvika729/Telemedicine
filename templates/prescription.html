@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Form</title>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <body style="background-color: lightblue;">
+
+        <h5>Butterfly Hospitals</h5>
+        <img src="Logo.png" width="90" Height="90"alt="Butterfly Hospitals Logo"> 
+        <div style="text-align:end;">
+        <p1>For any assistance please contact us </p1><br>
+        <p1><span style='font-size:20px;'>&#128222;</span><a href="g"> 7459146073</a></p1><br>
+    <p1><span style='font-size:20px;'>&#128231;</span><a href="g"> butterflyhospitals@gmail.com</a></p1>
+    </div><div class="patient-form">
+        <div style="text-align: center;">
+        <h2><b>Get Online Prescription</b></h2>
+        <form action="prescription" method="post">
+            <p>Name:</p>
+            <input type="text" name="fullname" placeholder="Full name">
+
+            <p>Date of Birth:</p>
+            <input type="text" name="dob" placeholder="DD-MM-YYYY">
+
+            <p>Contact Information:</p>
+            <input type="email" name="email" placeholder="Email">
+            <br><br>
+            <input type="tel" name="phone" placeholder="Phone Number">
+
+            <h2>Medical History</h2>
+            <p>Current Medications:</p>
+            <input type="text" name="medications" placeholder="List current medications">
+
+            <p>Allergies:</p>
+            <input type="text" name="allergies" placeholder="Allergic to any drugs, food, etc.">
+
+            <p>Medical Conditions:</p>
+            <input type="text" name="conditions" placeholder="E.g., diabetes, hypertension">
+
+            <p>Previous Surgeries or Hospitalizations:</p>
+            <input type="text" name="surgeries" placeholder="List any surgeries or hospital stays">
+
+            <h2>Current Symptoms</h2>
+            <p>Description of Symptoms:</p>
+            <input type="text" name="symptoms" placeholder="Describe symptoms">
+
+            <p>Duration of Symptoms:</p>
+            <input type="text" name="duration" placeholder="How long have they lasted?">
+
+            <p>Severity of Symptoms:</p>
+            <input type="text" name="severity" placeholder="Mild, moderate, severe">
+
+            <br><br>
+            <button type="submit">Submit</button>&nbsp;<input type="button" value="Cancel">
+        </div>
+        </form>
+    </div>
+</body>
+</html>
